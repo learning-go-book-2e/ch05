@@ -1,21 +1,25 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 )
 
-type opFuncType func(int, int) int
+func add(i int, j int) (int, error) { return i + j, nil }
 
-func add(i int, j int) int { return i + j }
+func sub(i int, j int) (int, error) { return i - j, nil }
 
-func sub(i int, j int) int { return i - j }
+func mul(i int, j int) (int, error) { return i * j, nil }
 
-func mul(i int, j int) int { return i * j }
+func div(i int, j int) (int, error) {
+	if j == 0 {
+		return 0, errors.New("division by zero")
+	}
+	return i / j, nil
+}
 
-func div(i int, j int) int { return i / j }
-
-var opMap = map[string]opFuncType{
+var opMap = map[string]func(int, int) (int, error){
 	"+": add,
 	"-": sub,
 	"*": mul,
@@ -31,6 +35,7 @@ func main() {
 		{"2", "%", "3"},
 		{"two", "+", "three"},
 		{"5"},
+		{"10", "/", "0"},
 	}
 	for _, expression := range expressions {
 		if len(expression) != 3 {
@@ -53,7 +58,11 @@ func main() {
 			fmt.Println(err)
 			continue
 		}
-		result := opFunc(p1, p2)
+		result, err := opFunc(p1, p2)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 		fmt.Println(result)
 	}
 }

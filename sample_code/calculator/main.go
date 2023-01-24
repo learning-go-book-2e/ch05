@@ -22,13 +22,13 @@ var opMap = map[string]func(int, int) int{
 
 func main() {
 	expressions := [][]string{
-		[]string{"2", "+", "3"},
-		[]string{"2", "-", "3"},
-		[]string{"2", "*", "3"},
-		[]string{"2", "/", "3"},
-		[]string{"2", "%", "3"},
-		[]string{"two", "+", "three"},
-		[]string{"5"},
+		{"2", "+", "3"},
+		{"2", "-", "3"},
+		{"2", "*", "3"},
+		{"2", "/", "3"},
+		{"2", "%", "3"},
+		{"two", "+", "three"},
+		{"5"},
 	}
 	for _, expression := range expressions {
 		if len(expression) != 3 {
