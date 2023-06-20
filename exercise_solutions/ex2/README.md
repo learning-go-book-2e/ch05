@@ -1,28 +1,12 @@
 # Exercise 2
 
 ## Question
-Write a function called `prefixer` that has an input parameter of type +string+ and returns a function that has an 
-input parameter of type `string` and returns a `string`. The returned function should prefix its input with the 
-string passed into `prefixer`. Use the following `main` function to test `prefixer`:
-
-```go
-func main() {
-    helloPrefix := prefixer("Hello")
-    fmt.Println(helloPrefix("Bob")) // should print Hello Bob
-    fmt.Println(helloPrefix("Maria")) // should print Hello Maria
-}
-```
+Write a function called `fileLen` that has an input parameter of type `string` and returns an `int` and an `error`. 
+The function takes in a file name and returns the number of bytes in the file. If there is an error reading the file, 
+return the error. Use `defer` to make sure the file is closed properly.
 
 ## Solution
-The `prefixer` function looks like this:
-
-```go
-func prefixer(prefix string) func(string) string {
-    return func (body string) string {
-        return prefix + " " + body
-    }
-}
-```
-The return type is a function signature, which has the keyword `func`, the input parameter for the returned function (`(string)`)
-and the return type for the returned function (`string`). In the body of the function, you return an anonymous function. This
-function is a closure; it refers to the `prefix` input parameter to `prefixer`.
+The `fileLen` function should look a lot like the sample code for the _simple_cat_ program. Rather than being in the
+body of `main`, it is a separate function. Use the `count` returned from calls to `Read` and add them up. It is
+important to get the `count` before checking if `Read` returned an error, since it returns an (ignorable) `io.EOF` 
+error when it reaches the end of a file. 
