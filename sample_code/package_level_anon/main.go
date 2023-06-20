@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 var (
-	add = func(i int, j int) int { return i + j }
-	sub = func(i int, j int) int { return i - j }
-	mul = func(i int, j int) int { return i * j }
-	div = func(i int, j int) int { return i / j }
+	add = func(i, j int) int { return i + j }
+	sub = func(i, j int) int { return i - j }
+	mul = func(i, j int) int { return i * j }
+	div = func(i, j int) int { return i / j }
 )
 
 func main() {
@@ -18,5 +18,5 @@ func main() {
 }
 
 func changeAdd() {
-	add = func(i int, j int) int { return i + j + j }
+	add = func(i, j int) int { return i + j + j }
 }

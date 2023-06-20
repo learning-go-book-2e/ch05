@@ -20,13 +20,13 @@ func main() {
 	fmt.Println(people)
 
 	// sort by last name
-	sort.Slice(people, func(i int, j int) bool {
+	sort.Slice(people, func(i, j int) bool {
 		return people[i].LastName < people[j].LastName
 	})
 	fmt.Println(people)
 
 	// sort by age
-	sort.Slice(people, func(i int, j int) bool {
+	sort.Slice(people, func(i, j int) bool {
 		return people[i].Age < people[j].Age
 	})
 	fmt.Println(people)
